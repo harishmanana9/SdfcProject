@@ -1,0 +1,132 @@
+<apex:page showHeader="false"  standardController="Candidate__c">
+ <style>
+             body{ background-color:#666362;  }
+             
+             .sfdc_richtext img{
+border: 0;
+height: 240px;
+width: 250px;
+border-radius: 300px;
+ box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.5);
+}
+
+
+      </style>
+
+<head>
+  
+    <style>
+    .fsWrapper{
+
+width: 960px;
+ 
+margin: 0 auto;
+background-color: blue;
+}
+    
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: auto;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 300px;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+  text-align:center;
+  
+}
+
+.name{
+  color: Grey;
+  font-size: 26px;
+ text-align: center;
+ vertical-align: top;
+  text-shadow: 1px 1px;
+   font-family: "Lucida Console", "Courier New", monospace;
+  
+  
+  
+  
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+
+
+</head>
+  
+     <apex:form styleClass="fsWrapper" >
+     
+      <apex:stylesheet value="{!$Resource.forcetree}"/>
+  
+     <apex:PageBlock title="Candidate Details" mode="view">
+    <div class="card">
+    <td>
+    
+     <apex:inputField style="width:40px"  value="{!Candidate__c.Image__c}" />
+      
+              </td>
+                <p class="name"> <apex:outputField value="{!Candidate__c.Name}"/>  </p>
+               
+       
+            
+   </div>
+
+
+<apex:pageBlock >
+<apex:pageBlockSection columns="1">
+
+
+      
+ <apex:inputField value="{!Candidate__c.Name}"/>
+ <apex:inputField value="{!Candidate__c.Address__c}"/>
+<apex:inputField value="{!Candidate__c.Blog_URL__c}"/> 
+ <apex:inputField value="{!Candidate__c.Phone__c}"/>
+
+ <apex:inputField value="{!Candidate__c.Location__Latitude__s}"/>
+  <apex:inputField value="{!Candidate__c.Location__Longitude__s}"/>
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+
+
+
+ <apex:pageBlockButtons >
+ 
+
+                <apex:commandButton action="{!save}" value="Save"/>  
+               
+                    <apex:commandButton action="{!cancel}" value="Cancel"/>
+                     
+            </apex:pageBlockButtons>
+      </apex:PageBlock>
+ 
+ 
+
+</apex:form>
+   
+</apex:page>

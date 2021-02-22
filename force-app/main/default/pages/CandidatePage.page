@@ -1,0 +1,167 @@
+<apex:page showHeader="false"  standardController="Candidate__c">
+ <style>
+             body{ background-color:#666362;  }
+             
+                          .sfdc_richtext img{
+border: 0;
+height: 240px;
+width: 250px;
+}
+      </style>
+
+<head>
+  
+    <style>
+    .fsWrapper{
+border-radius: 50%;
+width: 960px;
+ 
+margin: 0 auto;
+background-color: blue;
+}
+    
+.card {
+border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.JobText{
+  color: Black;
+  font-size: 18px;
+
+ vertical-align: bottom;
+ 
+  font-family: Arial, sans-serif;
+  
+  
+  
+  
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+  text-align:center;
+  
+}
+img {
+  border-radius: 50%;
+}
+.name{
+  color: Grey;
+  font-size: 26px;
+ text-align: center;
+ vertical-align: top;
+  text-shadow: 1px 1px;
+   font-family: "Lucida Console", "Courier New", monospace;
+  
+  
+  
+  
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+
+
+</head>
+  
+     <apex:form styleClass="fsWrapper" >
+     
+      <apex:stylesheet value="{!$Resource.forcetree}"/>
+  
+     <apex:PageBlock title="Candidate Details" mode="view">
+    <div class="card">
+    
+    
+   
+    
+    
+       <apex:image url="{!URLFOR($Resource.Candidate, 'isha.jpg')}" width="100%"  />
+              
+                <p class="name"> <apex:outputField value="{!Candidate__c.Name}"/>  </p>
+               
+       
+            
+   </div>
+       <apex:pageBlockSection >
+       
+       <div class="card">
+       
+ <apex:outputField value="{!Candidate__c.Name}"/>
+ <apex:outputField value="{!Candidate__c.Address__c}"/>
+<apex:outputField value="{!Candidate__c.Blog_URL__c}"/> 
+ <apex:outputField value="{!Candidate__c.Phone__c}"/>
+ 
+ </div>
+
+</apex:pageBlockSection>
+
+ <apex:pageBlockButtons >
+                <apex:commandButton action="{!edit}" value="Edit"/>  
+               
+                    <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            
+            
+  <apex:pageBlockTable value="{!Candidate__c}" var="item">
+
+ 
+  <apex:column >
+                <apex:facet name="header">  Job Application </apex:facet> 
+                <ul>
+               <apex:repeat value="{!Candidate__c.Job_Applications__r}" var="JobApp">       
+                        <li> <p class ="JobText">  {!JobApp.Name}</p>   </li>
+                      </apex:repeat>     
+                </ul>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">  Job Application </apex:facet> 
+                <ul>
+               <apex:repeat value="{!Candidate__c.Job_Applications__r}" var="JobApp">       
+                        <li><apex:outputField value="{!JobApp.Position_Applying_for__c}" /></li>
+                      </apex:repeat>     
+                </ul>
+            </apex:column>
+            
+            
+            
+            
+        </apex:pageBlockTable>
+ 
+ 
+ 
+  
+            
+      </apex:PageBlock>
+ 
+ 
+
+</apex:form>
+   
+</apex:page>

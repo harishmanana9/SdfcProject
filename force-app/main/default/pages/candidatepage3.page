@@ -1,0 +1,94 @@
+<apex:page standardController="Candidate__c" >
+<html>
+<head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+        <Link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+        
+        
+  <style type="text/css">
+  #map-canvas { width:630px;height:200px; border: 2px #39424e; border-radius: 25px;}
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script>
+var map;
+function initialize() {
+    var mapOptions = {
+        center: new google.maps.LatLng({!Candidate__c.Location__Latitude__s},{!Candidate__c.Location__Latitude__s}),
+        zoom: 15
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+  
+
+        
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-3">
+        <div class="d-flex align-items-center">
+
+ <apex:form >
+<apex:pageBlock title="Candidate Edit" mode="edit">
+<apex:pageBlockButtons >
+<apex:commandButton action="{!save}" value="Save"/>
+<apex:commandButton action="{!cancel}" value="Cancel"/>
+</apex:pageBlockButtons>
+<apex:pageBlockSection title="Image" columns="1">
+<div class="image">
+
+<img src="{!URLFOR($Resource.Candidate, 'isha.jpg')}" class="float-md-right"  alt="Kevin"/></div>
+</apex:pageBlockSection>
+
+<apex:pageBlockSection title="Information" columns="2">
+
+
+<apex:outputField value="{!Candidate__c.name}"/>
+<apex:outputField value="{!Candidate__c.CurrencyIsoCode}"/>
+<apex:outputField value="{!Candidate__c.OwnerId}"/>
+
+
+
+</apex:pageBlockSection>
+
+<apex:pageBlockSection title="Contact" columns="2">
+<apex:outputField value="{!Candidate__c.Phone__c}"/>
+
+<apex:outputField value="{!Candidate__c.Address__c}"/>
+<apex:outputField value="{!Candidate__c.CreatedById}"/>
+<apex:outputField value="{!Candidate__c.LastModifiedById}"/>
+
+</apex:pageBlockSection>
+
+
+
+</apex:pageBlock>
+ 
+
+ </apex:form>
+     
+        </div>
+    </div>
+</div>
+ <div id="map-canvas"> </div>
+</body>
+</html>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

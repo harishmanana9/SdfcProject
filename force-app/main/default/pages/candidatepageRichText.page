@@ -1,0 +1,199 @@
+<apex:page showHeader="false"  standardController="Candidate__c">
+ <style>
+             body{ background-color:#666362;  }
+             
+             .sfdc_richtext img{
+border: 0;
+height: 240px;
+width: 250px;
+border-radius: 300px;
+ box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.5);
+}
+
+
+
+
+  #map-canvas { width:1025px;height:400px; border: 4px #39424e solid;  border-radius: 25px; margin:auto;   }
+
+
+      </style>
+      
+      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script>
+var map;
+function initialize() {
+    var mapOptions = {
+        center: new google.maps.LatLng({!Candidate__c.Location__Latitude__s},{!Candidate__c.Location__Latitude__s}),
+        zoom: 15
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+      
+
+<head>
+  
+    <style>
+    .fsWrapper{
+
+width: 960px;
+ 
+margin: 0 auto;
+background-color: blue;
+}
+    
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: auto;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  border-radius: 300px;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+  text-align:center;
+  
+}
+
+.name{
+  color: gray;
+  font-size: 26px;
+ text-align: center;
+ vertical-align: top;
+   text-shadow: 1px 1PX ;
+   font-family: "Lucida Console", "Courier New", monospace;
+  
+}
+
+.nameTITLE{
+  color: BLACK;
+  font-size: 26px;
+ text-align: center;
+ vertical-align: top;
+   text-shadow: 1px 1PX ;
+   font-family: "Lucida Console", "Courier New", monospace;
+  
+}
+.JobText{
+  color: Black;
+  font-size: 18px;
+
+ vertical-align: bottom;
+ 
+  font-family: Arial, sans-serif;
+  
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+
+
+</head>
+  
+     <apex:form styleClass="fsWrapper" >
+     
+      <apex:stylesheet value="{!$Resource.forcetree}"/>
+  
+     <apex:PageBlock title="Candidate Details" mode="view">
+    <div class="card">
+    <td>
+    
+     <apex:outputField style="width:40px"  value="{!Candidate__c.Image__c}" />
+      
+              </td>
+                <p class="nameTITLE"> <apex:outputField value="{!Candidate__c.Name}"/>  </p>
+               
+       
+            
+   </div>
+
+
+<apex:pageBlock >
+<apex:pageBlockSection columns="1">
+
+
+
+<p class ="name"> Address: {!Candidate__c.Address__c}</p>
+<p class ="name"> Blog URL: {!Candidate__c.Blog_URL__c}</p>
+<p class ="name"> Phone NO: {!Candidate__c.Phone__c}</p>
+
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+
+
+
+ <apex:pageBlockButtons >
+ 
+
+                <apex:commandButton action="{!edit}" value="Edit"/>  
+               
+                    <apex:commandButton action="{!cancel}" value="Cancel"/>
+                     
+            </apex:pageBlockButtons>
+            
+            
+            
+
+ 
+  
+ 
+ 
+            
+       <apex:pageBlockTable value="{!Candidate__c}" var="item">
+
+
+  <apex:column >
+                <apex:facet name="header">  Job Application </apex:facet> 
+                <ul>
+               <apex:repeat value="{!Candidate__c.Job_Applications__r}" var="JobApp">       
+                        <li> <p class ="JobText">  {!JobApp.Name}</p>   </li>
+                      </apex:repeat>     
+                </ul>
+            </apex:column>
+                
+            <apex:column >
+                <apex:facet name="header">  Position Applying For </apex:facet> 
+                <ul>
+               <apex:repeat value="{!Candidate__c.Job_Applications__r}" var="JobApp">       
+                        <li><apex:outputField value="{!JobApp.Position_Applying_for__c}" /></li>
+                      </apex:repeat>     
+                </ul>
+            </apex:column>
+            
+        </apex:pageBlockTable>
+            
+            
+      </apex:PageBlock>
+ 
+
+
+</apex:form>
+     <div id="map-canvas"> </div>
+</apex:page>

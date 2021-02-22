@@ -1,0 +1,30 @@
+<apex:page >
+
+
+<head>
+<apex:stylesheet value="{!URLFOR($Resource.maxval,'newstyle.css')}"/>
+<Link href ="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<h1>Congtatulations</h1>
+<br/>
+<p class="Redcolor"> This is Red</p>
+<p id="Greencolor"> This is Green</p>
+
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+  <label class="form-check-label" for="flexCheckDefault">
+    Default checkbox
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked ="checked"/>
+  <label class="form-check-label" for="flexCheckChecked">
+    Checked checkbox
+  </label>
+</div>
+
+</body>
+</apex:page>

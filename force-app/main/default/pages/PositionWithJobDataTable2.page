@@ -1,0 +1,43 @@
+<apex:page controller="PositionWithJob">
+
+   <apex:dataTable value="{!positions}" var="PositionRecord" id="theTable"
+        rowClasses="odd,even" styleClass="tableClass">
+        <apex:facet name="caption">Showing Position with all Job Applications</apex:facet>
+        <apex:facet name="header">Position With Job</apex:facet>
+      
+
+        <apex:column value="{!PositionRecord.Name}" />
+       
+
+        <apex:column >
+                <apex:facet name="header">Job Application</apex:facet> 
+                <ul>
+                    <apex:repeat value="{!PositionRecord.Job_Applications__r}" var="JobApp">
+                        <li><apex:outputField value="{!JobApp.Name}" /></li>
+                      
+                    </apex:repeat>
+                </ul>
+            </apex:column>
+
+    </apex:dataTable>
+
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Positions}" var="PositionRecord">
+            <apex:column value="{!PositionRecord.Name}" />
+       
+           
+            <apex:column >
+                <apex:facet name="header">Job Application</apex:facet> 
+                <ul>
+                    <apex:repeat value="{!PositionRecord.Job_Applications__r}" var="JobApp">
+                        <li><apex:outputField value="{!JobApp.Name}" /></li>
+                      
+                    </apex:repeat>
+                </ul>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    
+    
+</apex:page>

@@ -1,0 +1,7 @@
+<apex:page standardController="Candidate__c"> 
+
+
+
+    <apex:variable var="imageVar" value="{!Candidate__c.Name}"/> 
+    <apex:image url="{!URLFOR($Resource.Candidate, imageVar)}"/> 
+</apex:page>
